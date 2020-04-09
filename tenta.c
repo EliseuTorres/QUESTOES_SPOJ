@@ -72,15 +72,15 @@ int particao(long X[], int aux, int r)
    pivo = X[(aux + r)/ 2];
    i = aux - 1;
    j = r + 1;
-   while(i < j){
-      do{
+   while (i < j) {
+      do {
          j--;
-      }while(X[j] > pivo);
+      } while (X[j] > pivo);
       
-      do{
+      do {
          i++; 
-      }while(X[i] < pivo);
-      if(i < j)
+      } while(X[i] < pivo);
+      if (i < j)
          troca(X, i, j);
    }
    
@@ -90,7 +90,7 @@ int particao(long X[], int aux, int r)
 void quicksort(long X[], int aux, int r)
 {
    int q;
-   if(aux < r){
+   if (aux < r) {
       q = particao(X, aux, r);
       quicksort(X,aux, q);
       quicksort(X, q+1, r);
@@ -101,7 +101,7 @@ void backtrack(long fig[], long aux[], int n, int k)
 {
 	int i, j, inv[n];
 
-   if(n == k){
+   if (n == k) {
    	for (i = 0; i < n; i++){
       	printf("%d", aux[i]);
          if (i != (n - 1))
@@ -109,7 +109,7 @@ void backtrack(long fig[], long aux[], int n, int k)
       }
 
    	printf("\n");
-   }else{
+   } else {
 		memset(inv,1,sizeof(inv));
 
       for (i = 0; i < n; i++)
@@ -118,7 +118,7 @@ void backtrack(long fig[], long aux[], int n, int k)
          		inv[j] = 0;
 
       for (i = 0; i < n; i++)
-      	if (inv[i]){
+      	if (inv[i]) {
          	aux[k] = fig[i];
          	backtrack(fig, aux, n, k + 1);
             aux[k] = AB;
@@ -131,21 +131,18 @@ int main()
 	int i, n, teste = 1;
 	
 	scanf("%i", &n);
-	while(n != 0){
+	while (n != 0) {
 		long fig[n], aux[n];
 		
-		for(i = 0; i < n; i++){
+		for (i = 0; i < n; i++) {
 			scanf("%li", &fig[i]);
-						
 		}		
 		
-		
-      memset(aux, AB, sizeof(aux));
-		
+		memset(aux, AB, sizeof(aux));
+	
 		quicksort(fig, 0, n - 1);		
-		
 		backtrack(fig, aux, n, 0);
-		
 		scanf("\n%i", &n);
 	}
+	return 0;
 }
